@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="1">
-      <change afterPath="$PROJECT_DIR$/bot/Handlers/user/Add_book.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/Handlers/user/other.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/Main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bot/keyboard.py" afterDir="false" />
+    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="убрал класс добавления книги">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DBScripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBScripts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/debug/info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/Add_book.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/Add_book.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715293965112</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="убрал класс добавления книги">
+      <option name="closed" value="true" />
+      <created>1717849831017</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717849831017</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +186,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1" />
-    <option name="LAST_COMMIT_MESSAGE" value="1" />
+    <MESSAGE value="убрал класс добавления книги" />
+    <option name="LAST_COMMIT_MESSAGE" value="убрал класс добавления книги" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BookLib$DBScripts.coverage" NAME="DBScripts Coverage Results" MODIFIED="1715260267787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

@@ -1,6 +1,7 @@
 from aiogram import Router, F
 from aiogram.types import Message
-import os, DBScripts
+from DBScripts import add_book
+import os
 from aiogram import Bot
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
@@ -27,7 +28,7 @@ async def ins_book(message: Message, state: FSMContext):
 async def ins_book_author(message: Message, state: FSMContext):
     mes = int(message.text)
     print(mes)
-    status = DBScripts.author_id(mes, message.from_user.id)
+    status = add_book.author_id(mes, message.from_user.id)
     await status
     if status == True:
         await message.answer("Добавлено. Введите название книги:")
@@ -38,14 +39,14 @@ async def ins_book_author(message: Message, state: FSMContext):
 
 @rt.message(F.text, StateFilter(adding_book.get_adder_name))
 async def ins_book_Name(message: Message, state: FSMContext):
-    mes= message.text
+    mes= str(message.text)
     print(mes)
     status = add_book.name(mes, message.from_user.id)
     await status
     if status == True:
         await message.answer("Добавлено. Отправьте файл книги Epub(скоро будет поддерживаться больше форматов)")
         await state.set_state(adding_book.get_adder_epub)
-    elif status == False:
+    else:
         await message.answer("Что-то сломалось, повторите")
         await state.set_state(adding_book.get_adder_name)
 

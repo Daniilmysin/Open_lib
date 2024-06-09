@@ -75,48 +75,45 @@ class user_act():
     async def change_user(id, change):
         pass
 
+class add_book:
+    async def name( name:str, id_user):
+        async with AsyncSession(engine) as session:
+            user_book=""
+            add_book=book(
+                        id=user_book,
+                        name=name
+                        )
+            session.add(add_book)
 
-async def name( name,id_user):
-    async with AsyncSession(engine) as session:
+            await session.commit()
+            return True
+    async def author_id(author_id:int , id_user):
+
+        async with AsyncSession(engine) as session:
+            session.add(book(
+                author=author(id=author_id),
+                creator= id_user
+            ))
+
+            await session.commit()
+            return True
+
+    async def description( des, id_user):
         user_book=""
-        add_book=book(
-                    id=user_book,
-                    name=name
-                    )
-        session.add(add_book)
-        try:
-            await session.commit()
-        except Exception:
-            return False
-        return True
-async def author_id(author_id:int , id_user):
+        async with AsyncSession(engine) as session:
+            session.add(book(
+                id=user_book,
+                description=des
+            ))
+            try:
+                await session.commit()
+            except Exception:
+                return False
+            return True
 
-    async with AsyncSession(engine) as session:
-        session.add(book(
-            author=author_id,
-            creator= id_user
-        ))
-        try:
-            await session.commit()
-        except:
-            return False
+    async def end(id_user):
         return True
-async def description( des, id_user):
-    user_book=""
-    async with AsyncSession(engine) as session:
-        session.add(book(
-            id=user_book,
-            description=des
-        ))
-        try:
-            await session.commit()
-        except Exception:
-            return False
-        return True
-
-async def end(id_user):
-    return True
-    pass
+        pass
 
 
 async def search_name(search):
