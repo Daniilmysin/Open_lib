@@ -57,18 +57,16 @@ class user(Base):
 class user_act():
     async def add_user(id, name):
         async with AsyncSession(engine) as session:
-            bruh = session.execute(select(user).order_by(user.id))
-            await bruh
+            session.add(user(id=id,
+                             name=name))
             await session.commit()
-            print(bruh)
-        if bruh == None:
-            async with AsyncSession(engine) as session:
-                session.add(user(id=id,
-                                 name=name))
-                await session.commit()
         return
 
     async def ban_user(id):
+        async with AsyncSession(engine) as session:
+            session.add(user(id=id,
+                             ban=True))
+            await session.commit()
         pass
     async def find_user(id):
         pass
@@ -116,13 +114,22 @@ class add_book:
         pass
 
 
-async def search_name(search):
-    async with AsyncSession(engine) as session:
-        pass
+async def search_name(search, where_search="id"):
+    async with (AsyncSession(engine) as session):
+        if where_search=="id":
+            stmt= select(book.Name).where(book.id==search)
+        elif where_search == ("Name"):
+            stmt = select(book.id).where(book.Name == search)
+        elif where_search == ("dis"):
+            stmt = select(book.Name).where(book.description == search)
+        result = await session.execute(stmt)
+        a1 = result.scalars().all()
+        print(a1)
+        return a1
 
 
 async def make_BD():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
-#asyncio.run(make_BD())
+asyncio.run(search_name(2))
