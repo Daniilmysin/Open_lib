@@ -59,7 +59,7 @@ class User(Base):
     ban = Column(Boolean, default=False)
 
 
-class User_act():
+class UserAct():
     async def add_user(id, name):
         async with AsyncSession(engine) as session:
             session.add(User(id=id,
@@ -81,49 +81,49 @@ class User_act():
         pass
 
 
-class Book_act:
-    async def name(name: str, id_user):
-        async with AsyncSession(engine) as session:
-            user_book = ""
-            add_book = Book(
-                id=user_book,
-                name=name
-            )
-            session.add(add_book)
+class BookAct:
+    class BookAdd:
+        async def name(name: str, id_user):
+            async with AsyncSession(engine) as session:
+                user_book = ""
+                add_book = Book(
+                    id=user_book,
+                    name=name
+                )
+                session.add(add_book)
 
-            await session.commit()
-            return True
-
-    async def author_id(author_id: int, id_user):
-        stmt = select(Author).where(Author.id == author_id)
-        stmt1 = select(User).where(User.id == id_user)
-        async with AsyncSession(engine) as session:
-            result = await session.execute(stmt)
-            result1 = await session.execute(stmt1)
-            session.add(Book(
-                author=result.scalars().one(),
-                creator=id_user
-            ))
-
-            await session.commit()
-            return True
-
-    async def description(des, id_user):
-        user_book = ""
-        async with AsyncSession(engine) as session:
-            session.add(Book(
-                id=user_book,
-                description=des
-            ))
-            try:
                 await session.commit()
-            except Exception:
-                return False
-            return True
+                return True
 
-        async def end(id_user):
-            return True
-            pass
+        async def author_id(author_id: int, id_user):
+            stmt = select(Author).where(Author.id == author_id)
+            stmt1 = select(User).where(User.id == id_user)
+            async with AsyncSession(engine) as session:
+                result = await session.execute(stmt)
+                result1 = await session.execute(stmt1)
+                session.add(Book(
+                    author=result.scalars().one(),
+                    creator=id_user
+                ))
+
+                await session.commit()
+                return True
+
+        async def description(des, id_user):
+            user_book = ""
+            async with AsyncSession(engine) as session:
+                session.add(Book(
+                    id=user_book,
+                    description=des
+                ))
+                try:
+                    await session.commit()
+                except Exception:
+                    return False
+                return True
+
+            async def end(id_user):
+                pass
 
 
 async def search_name(search, where_search="id"):

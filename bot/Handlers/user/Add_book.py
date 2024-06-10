@@ -1,6 +1,6 @@
 from aiogram import Router, F
 from aiogram.types import Message
-from DBScripts import Book_act
+from DBScripts import BookAct
 import os
 from aiogram import Bot
 from aiogram.filters import Command, StateFilter
@@ -10,51 +10,52 @@ from aiogram.enums import ContentType
 from bot.Main import Bot_token
 
 bot = Bot(token=Bot_token)
+rt = Router()
+BookAdd = BookAct.BookAdd
 
-rt= Router()
-class adding_book(StatesGroup):
+class AddingBook(StatesGroup):
     get_adder_author = State()
     get_adder_name = State()
     get_adder_Files = State()
-    get_adder_epub= State()
+    get_adder_epub = State()
 
 @rt.message(F.text.lower()=="добавить книгу" or Command("add_book"))
 async def ins_book(message: Message, state: FSMContext):
     """Начинает процесс добавления книги"""
     await message.answer("Введите ID Автора. "
                          "Если автора нет в базе данных, то добавьте его с помощью /add_author")
-    await state.set_state(adding_book.get_adder_author)
+    await state.set_state(AddingBook.get_adder_author)
 
-@rt.message(F.text, StateFilter(adding_book.get_adder_author))
+@rt.message(F.text, StateFilter(AddingBook.get_adder_author))
 async def ins_book_author(message: Message, state: FSMContext):
     """Принимает айди автора"""
     mes = int(message.text)
     print(mes)
-    status = Book_act.author_id(author_id=mes, id_user=message.from_user.id)
+    status = BookAdd.author_id(author_id=mes, id_user=message.from_user.id)
     await status
-    if status == True:
+    if status:
         await message.answer("Добавлено. Введите название книги:")
-        await state.set_state(adding_book.get_adder_name)
-    elif status == False:
+        await state.set_state(AddingBook.get_adder_name)
+    else:
         await message.answer("Что-то сломалось, повторите")
-        await state.set_state(adding_book.get_adder_author)
+        await state.set_state(AddingBook.get_adder_author)
 
-@rt.message(F.text, StateFilter(adding_book.get_adder_name))
-async def ins_book_Name(message: Message, state: FSMContext):
+@rt.message(F.text, StateFilter(AddingBook.get_adder_name))
+async def ins_book_name(message: Message, state: FSMContext):
     """Принимает название книги"""
     mes= str(message.text)
     print(mes)
-    status = Book_act.name(mes, message.from_user.id)
+    status = BookAdd.name(mes, message.from_user.id)
     await status
     """Если всё нормально то всё True"""
-    if status == True:
+    if status:
         await message.answer("Добавлено. Отправьте файл книги Epub(скоро будет поддерживаться больше форматов)")
-        await state.set_state(adding_book.get_adder_epub)
+        await state.set_state(AddingBook.get_adder_epub)
     else:
         await message.answer("Что-то сломалось, повторите")
-        await state.set_state(adding_book.get_adder_name)
+        await state.set_state(AddingBook.get_adder_name)
 
-@rt.message(adding_book.get_adder_epub)
+@rt.message(AddingBook.get_adder_epub)
 async def ins_book_files_epub(message: Message, state: FSMContext):
     """принимает файл с книгой(В РАЗРАБОТКЕ)"""
     file_id = message.document.file_id
@@ -67,5 +68,5 @@ async def ins_book_files_epub(message: Message, state: FSMContext):
 async def stop(message: Message, state: FSMContext):
     """Заканчивает создание книги"""
     await message.answer("Отмена...")
-    await Book_act.end(message.from_user.id)
+    await BookAdd.end(message.from_user.id)
     await state.clear()
