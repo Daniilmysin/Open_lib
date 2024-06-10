@@ -3,11 +3,16 @@ from aiogram import Bot, Dispatcher
 from Handlers.user import Add_book,other
 from Handlers.debug import info
 from DBScripts import make_BD
+from dotenv import load_dotenv
+import os
 
 logging.basicConfig(level=logging.INFO, filename="py_bot.log", format="%(asctime)s %(levelname)s %(message)s")
 
-Bot_token=""
+load_dotenv()
+
+Bot_token = str(os.getenv("bot"))
 bot = Bot(token=Bot_token)
+
 # Запуск бота
 async def main():
     # Объект бота
