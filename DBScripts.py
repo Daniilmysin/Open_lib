@@ -86,10 +86,13 @@ class add_book:
             await session.commit()
             return True
     async def author_id(author_id:int , id_user):
-
+        stmt= select(author()).where(author.id==author_id)
+        stmt1= select(user).where(user.id==id_user)
         async with AsyncSession(engine) as session:
+            result = await session.execute(stmt)
+            result = await session.execute(stmt1)
             session.add(book(
-                author=author(id=author_id),
+                author=result.scalars().one(),
                 creator= id_user
             ))
 

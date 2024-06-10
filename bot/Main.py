@@ -6,7 +6,7 @@ from DBScripts import make_BD
 
 logging.basicConfig(level=logging.INFO, filename="py_bot.log", format="%(asctime)s %(levelname)s %(message)s")
 
-Bot_token="7164218449:AAF3P06kHHnapAkqL2UB7ld0SFCxSGpW-Lw"
+Bot_token=""
 bot = Bot(token=Bot_token)
 # Запуск бота
 async def main():

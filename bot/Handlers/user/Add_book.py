@@ -8,7 +8,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.enums import ContentType
 
-Bot_token="7164218449:AAF3P06kHHnapAkqL2UB7ld0SFCxSGpW-Lw"
+Bot_token=""
 bot = Bot(token=Bot_token)
 
 rt= Router()
@@ -18,7 +18,7 @@ class adding_book(StatesGroup):
     get_adder_Files = State()
     get_adder_epub= State()
 
-@rt.message(F.text.lower()=="добавить книгу")
+@rt.message(F.text.lower()=="добавить книгу" or Command("add_book"))
 async def ins_book(message: Message, state: FSMContext):
     await message.answer("Введите ID Автора. "
                          "Если автора нет в базе данных, то добавьте его с помощью /add_author")
@@ -28,7 +28,7 @@ async def ins_book(message: Message, state: FSMContext):
 async def ins_book_author(message: Message, state: FSMContext):
     mes = int(message.text)
     print(mes)
-    status = add_book.author_id(mes, message.from_user.id)
+    status = add_book.author_id(author_id=mes, id_user=message.from_user.id)
     await status
     if status == True:
         await message.answer("Добавлено. Введите название книги:")
