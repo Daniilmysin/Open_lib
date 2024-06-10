@@ -2,7 +2,8 @@ from aiogram import Router, Bot
 from aiogram.filters import Command
 from aiogram.types import Message
 from aiogram.enums import ParseMode
-Bot_token=""
+from bot.Main import Bot_token
+
 bot = Bot(token=Bot_token)
 
 rt= Router()
