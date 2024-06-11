@@ -7,7 +7,10 @@
     <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="upload">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DBScripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBScripts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Handlers/debug/info.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/debug/info.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot/Handlers/user/Add_book.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/Add_book.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/other.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/other.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +84,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.DBScripts">
+  <component name="RunManager" selected="Python.Main">
     <configuration name="DBScripts" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BookLib" />
       <option name="ENV_FILES" value="" />
@@ -243,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718027806265</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="upload">
+      <option name="closed" value="true" />
+      <created>1718029573168</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1718029573168</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
