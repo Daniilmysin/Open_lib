@@ -1,11 +1,11 @@
 from sqlalchemy import Integer, String, \
     Column, Date, ForeignKey, Text, Boolean, select
 from sqlalchemy.dialects.postgresql import TSVECTOR
-import asyncio, logging
+import asyncio, logging, datetime # асинк нужен для тестов
 from sqlalchemy.orm import DeclarativeBase, relationship
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, AsyncAttrs
 from dotenv import load_dotenv
-import os
+import os, redis
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
@@ -15,7 +15,7 @@ passwd = str(os.getenv("passwd"))
 host = str(os.getenv("host"))
 
 engine = create_async_engine(f"postgresql+asyncpg://{user}:{passwd}@{host}/postgres", echo=True)
-
+r = redis.Redis()
 
 class Base(AsyncAttrs, DeclarativeBase):
     pass
@@ -23,14 +23,14 @@ class Base(AsyncAttrs, DeclarativeBase):
 
 class Book(Base):
     __tablename__ = 'book'
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    id = Column(primary_key=True, autoincrement=True)
     name = Column(String(150))
     author_id = Column(Integer, ForeignKey('author.id'))
     author = relationship("Author")
     description = Column(Text)
     teg = Column(TSVECTOR)
     search = Column(TSVECTOR)
-    sate_birth = Column(Date)
+    sate_birth = Column(Date, onupdate=datetime.datetime.now)
     creator = Column(Integer, ForeignKey('user.id'))
     check = Column(Boolean, default=False)
     adres = Column(String(200))
@@ -67,22 +67,39 @@ class UserAct:
             await session.commit()
         return
 
-    async def ban_user(id):
+    async def ban_user(id, ban: bool = True):
         async with AsyncSession(engine) as session:
             session.add(User(id=id,
-                             ban=True))
+                             ban=ban))
             await session.commit()
         pass
 
     async def find_user(id):
         pass
 
-    async def change_user(id, change):
+    async def change_user(id, change:dict):
         pass
 
 
-class BookAct:
-    class BookAdd:
+class AuthorAct:
+    class AuthorAdd:
+        async def name(self, name):
+            name_list = name.split()
+            async with AsyncSession(engine) as session:
+                print(name, name_list)
+                add_author = Author(
+                    name=name_list[0],
+                    last_name=name_list[1],
+                    patronymic=name_list[2],
+                    creator=1329387796
+                )
+                print(add_author.id)
+                print(session.add(add_author))
+                await session.commit()
+
+
+class BookAct():
+    class BookAdd():
         async def name(name, id_user):
             async with AsyncSession(engine) as session:
                 user_book = ""
@@ -100,7 +117,7 @@ class BookAct:
                 result_author = await session.execute(select(Author).filter_by(id=author_id))
                 result_user = await session.execute(select(User).filter_by(id=id_user))
                 author = result_author.scalar_one_or_none()
-                user= result_user.scalar_one_or_none()
+                user = result_user.scalar_one_or_none()
                 if author is None:
 
                     return False
@@ -131,24 +148,26 @@ class BookAct:
             pass
 
 
-async def search(search, where_search="id"):
-    async with (AsyncSession(engine) as session):
-        if where_search == "id":
-            stmt = select(Book).filter(Book.id == search)
-        elif where_search == ("Name"):
-            stmt = select(Book.id).where(Book.name == search)
-        elif where_search == ("dis"):
-            stmt = select(Book.name).where(Book.description == search)
-        result = await session.execute(select(User))
-        users = result.scalars().all()
-        #a1 = result.scalars().all()
-        print("========")
-        print(users)
+class BDAct:
+    async def search(search, where_search="id"):
+        async with (AsyncSession(engine) as session):
+            if where_search == "id":
+                stmt = select(Book).filter_by(Book.id == search)
+            elif where_search == ("Name"):
+                stmt = select(Book.id).filter_by(Book.name == search)
+            elif where_search == ("dis"):
+                stmt = select(Book.name).filter_by(Book.description == search)
+            result = await session.execute(select(User))
+            users = result.scalars().all()
+            #a1 = result.scalars().all()
+            print("========")
+            print(users)
 
 
-async def make_bd():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    async def make_bd(self):
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
 
+AuthorAdd= AuthorAct.AuthorAdd()
 
-#asyncio.run(search(1))
+asyncio.run(AuthorAdd.name(name='иван иванович иванов', id_user=1111))

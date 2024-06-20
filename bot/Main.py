@@ -2,7 +2,7 @@ import asyncio, logging
 from aiogram import Bot, Dispatcher
 from Handlers.user import Add_book,other
 from Handlers.debug import info
-from DBScripts import make_bd
+from DBScripts import BDAct
 import os
 Bot_token = str(os.getenv("bot"))
 bot = Bot(token=Bot_token)
@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO, filename="py_bot.log", format="%(asctime
 async def main():
     # Объект бота
     try:
-        await make_bd()
+        await BDAct.make_bd()
     except:
         print("Ошибка создания базы данных, возможно база данных создана")
     # Диспетчер

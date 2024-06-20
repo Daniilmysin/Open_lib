@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="upload">
+      <change afterPath="$PROJECT_DIR$/bot/test/test_db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DBScripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBScripts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot/Handlers/debug/info.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/debug/info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/Add_book.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/Add_book.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/other.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/other.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +53,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_book_act.executor&quot;: &quot;Debug&quot;,
     &quot;Python.DBScripts.executor&quot;: &quot;Run&quot;,
     &quot;Python.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -84,7 +83,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Main">
+  <component name="RunManager" selected="Python.DBScripts">
     <configuration name="DBScripts" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BookLib" />
       <option name="ENV_FILES" value="" />
@@ -130,9 +129,25 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for test_db.SimpleUnitTest.test_book_act" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="BookLib" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bot/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_db.SimpleUnitTest.test_book_act&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.DBScripts" />
+        <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest.test_book_act" />
       </list>
     </recent_temporary>
   </component>
@@ -254,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718029573168</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="upload">
+      <option name="closed" value="true" />
+      <created>1718128966902</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1718128966902</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
