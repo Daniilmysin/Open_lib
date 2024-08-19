@@ -1,11 +1,12 @@
 from sqlalchemy import Integer, String, \
     Column, Date, ForeignKey, Text, Boolean, select
 from sqlalchemy.dialects.postgresql import TSVECTOR
-import asyncio, logging, datetime # асинк нужен для тестов
+import asyncio, logging, datetime  # асинк нужен для тестов
 from sqlalchemy.orm import DeclarativeBase, relationship
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, AsyncAttrs
 from dotenv import load_dotenv
-import os, redis
+import os, orjson
+import redis.asyncio as aioredis
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
@@ -15,7 +16,7 @@ passwd = str(os.getenv("passwd"))
 host = str(os.getenv("host"))
 
 engine = create_async_engine(f"postgresql+asyncpg://{user}:{passwd}@{host}/postgres", echo=True)
-r = redis.Redis()
+
 
 class Base(AsyncAttrs, DeclarativeBase):
     pass
@@ -30,10 +31,10 @@ class Book(Base):
     description = Column(Text)
     teg = Column(TSVECTOR)
     search = Column(TSVECTOR)
-    sate_birth = Column(Date, onupdate=datetime.datetime.now)
+    last_update = Column(Date, onupdate=datetime.datetime.now)
     creator = Column(Integer, ForeignKey('user.id'))
     check = Column(Boolean, default=False)
-    adres = Column(String(200))
+    url = Column(String(200))
 
 
 class Author(Base):
@@ -43,9 +44,11 @@ class Author(Base):
     last_name = Column(String(100))
     patronymic = Column(String(100))
     creator = Column(Integer, ForeignKey("user.id"))
+    description = Column(Text)
     photo = Column(String(100))
     check = Column(Boolean, default=False)
     books = relationship("Book")
+    url = Column(String(300))
 
 
 class User(Base):
@@ -58,8 +61,37 @@ class User(Base):
     admin = Column(Boolean, default=False)
     ban = Column(Boolean, default=False)
 
+# класс работы с менеджером
+class RedisManager:
+    def __init__(self):
+        self.redis = aioredis.Redis()
 
-class UserAct:
+    async def set_data(self, key, data) -> bool:
+        try:
+            serialized_data = orjson.dumps(data)
+            await self.redis.set(key, serialized_data)
+            return True
+        except Exception as e:
+            # Обработка ошибки
+            print(f"Error setting data: {e}")
+            return False
+
+    async def get_data(self, key):
+        try:
+            data = await self.redis.get(key)
+            if data:
+                return orjson.loads(data)
+            return None
+        except Exception as e:
+            # Обработка ошибки
+            print(f"Error getting data: {e}")
+            return None
+
+    async def close(self):
+        await self.redis.aclose()
+
+class UserAct():
+    @staticmethod
     async def add_user(user_id, name):
         async with AsyncSession(engine) as session:
             session.add(User(id=user_id,
@@ -67,89 +99,120 @@ class UserAct:
             await session.commit()
         return
 
-    async def ban_user(id, ban: bool = True):
+    @staticmethod
+    async def ban_user(id_user, ban: bool = True):
         async with AsyncSession(engine) as session:
-            session.add(User(id=id,
+            try:
+                result_user = await session.execute(select(User).filter_by(id=id_user))
+                result = result_user.scalar_one_or_none()
+            except Exception as error:
+                print(f'ошибка:{error},юзер:{id_user}')
+                return False
+            session.add(User(id=result,
                              ban=ban))
             await session.commit()
-        pass
+        return True
 
-    async def find_user(id):
-        pass
+    @staticmethod
+    async def find_user(id_user):
+        async with AsyncSession(engine) as session:
+            try:
+                result_user = await session.execute(select(User).filter_by(id=id_user))
+                result = result_user.scalar_one_or_none()
+            except Exception as error:
+                print(f'ошибка:{error},юзер:{id_user}')
+                return False
+            await session.commit()
+        return result
 
-    async def change_user(id, change:dict):
+    @staticmethod
+    async def change_user(user_id, change: dict):
         pass
 
 
 class AuthorAct:
-    class AuthorAdd:
-        async def name(self, name):
+    class AuthorAdd(RedisManager):
+        async def name(self, name, id_user) -> bool:
             name_list = name.split()
-            async with AsyncSession(engine) as session:
-                print(name, name_list)
-                add_author = Author(
-                    name=name_list[0],
-                    last_name=name_list[1],
-                    patronymic=name_list[2],
-                    creator=1329387796
-                )
-                print(add_author.id)
-                print(session.add(add_author))
-                await session.commit()
+            data = {
+                "name": name_list[0],
+                "surname": name_list[1],
+                "patronymic": name_list[2],
+                "id": id_user
+            }
+            return await self.set_data(id_user, data)
 
+        async def url(self, url, id_user) -> bool or None:
+            data = await self.get_data(id_user)
+            data["url"] = url
+            return self.set_data(id_user, data)
 
-class BookAct():
-    class BookAdd():
-        async def name(name, id_user):
-            async with AsyncSession(engine) as session:
-                user_book = ""
-                add_book = Book(
-                    id=user_book,
-                    name=name
-                )
-                session.add(add_book)
+        async def descripton(self, description, id_user) -> bool or None:
+            data = self.get_data(id_user)
+            data["description"] = description
+            return self.set_data(id_user, data)
 
-                await session.commit()
-                return True
-
-        async def author_id(author_id, id_user):
-            async with AsyncSession(engine) as session:
-                result_author = await session.execute(select(Author).filter_by(id=author_id))
-                result_user = await session.execute(select(User).filter_by(id=id_user))
-                author = result_author.scalar_one_or_none()
-                user = result_user.scalar_one_or_none()
-                if author is None:
-
-                    return False
-
-                session.add(Book(
-                    author=author,
-                    creator=user
-                ))
-                try:
-                    await session.commit()
-                except Exception:
-                    return False
-
-        async def description(des, id_user):
-            user_book = ""
-            async with AsyncSession(engine) as session:
-                session.add(Book(
-                    id=user_book,
-                    description=des
-                ))
-                try:
-                    await session.commit()
-                except Exception:
-                    return False
-                return True
-
-        async def end(id_user):
+        async def end(id_user) -> bool:
             pass
+
+    async def delete(self, id_book, id_user) -> bool:
+        pass
+
+
+class BookAct:
+    class BookAdd(RedisManager):
+        async def author_id(self, id_author, id_user) -> bool or None:
+            async with AsyncSession(engine) as session:
+                result_author = await session.execute(select(Author).filter_by(id=id_author))
+                author = result_author.scalar_one_or_none()
+                if author is None:
+                    return None
+                try:
+                    await session.commit()
+                except Exception as error:
+                    print(f'ошибка:{error},юзер:{id_user}')
+                    return False
+            # заканчивается проверка автора и добавляем новую книгу в редис для дальнейших действий
+            data = {
+                "author": id_author
+            }
+            return await self.set_data(id_user, data)
+
+        async def name(self, name, id_user) -> bool or None:
+            data = await self.get_data(id_user)
+            data["name"] = name
+            return await self.set_data(id_user, data)
+
+        async def description(self, id_user, description) -> bool or None:
+            data = await self.get_data(id_user)
+            data["description"] = description
+            return await self.set_data(id_user, data)
+
+        async def photo(self, id_user, photo) -> bool or None:
+            data = await self.get_data(id_user)
+            data["photo"] = photo
+            return await self.set_data(id_user, data)
+
+        async def end(self, id_user, epub) -> bool or None:
+            data = await self.get_data(id_user)
+
+            async with (AsyncSession(engine) as session):
+                result_author = await session.execute(select(Author).filter_by(id=data["author"]))
+                result_user = await session.execute(select(Author).filter_by(id=id_user))
+                user = result_user.scalar_one_or_none()
+                author = result_author.scalar_one_or_none()
+                session.add(Book(
+                    name=data["name"],
+                    description=data["description"],
+                    author_id=author,
+                    user=user,
+                    photo=data["photo"],
+                    epub=epub,
+                ))
 
 
 class BDAct:
-    async def search(search, where_search="id"):
+    async def search(self, search, where_search="id"):
         async with (AsyncSession(engine) as session):
             if where_search == "id":
                 stmt = select(Book).filter_by(Book.id == search)
@@ -163,11 +226,15 @@ class BDAct:
             print("========")
             print(users)
 
+    async def del_db(self):
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.drop_all)
 
     async def make_bd(self):
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
 
-AuthorAdd= AuthorAct.AuthorAdd()
 
-asyncio.run(AuthorAdd.name(name='иван иванович иванов', id_user=1111))
+AuthorAdd = AuthorAct.AuthorAdd()
+
+asyncio.run(AuthorAdd.name(name='иван иванович иванов', id_user=1121))

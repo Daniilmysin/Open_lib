@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="upload">
-      <change afterPath="$PROJECT_DIR$/bot/test/test_db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DBScripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBScripts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/test/test_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/test/test_db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,12 +52,13 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_book_act.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_book_act.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_db.py.executor&quot;: &quot;Run&quot;,
     &quot;Python.DBScripts.executor&quot;: &quot;Run&quot;,
     &quot;Python.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/apelsin/PycharmProjects/вхоре.аи/main.py&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;add__redis&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/apelsin/PycharmProjects/test&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -83,7 +83,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.DBScripts">
+  <component name="RunManager" selected="Python.Main">
     <configuration name="DBScripts" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BookLib" />
       <option name="ENV_FILES" value="" />
@@ -146,8 +146,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.DBScripts" />
         <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest.test_book_act" />
+        <item itemvalue="Python.DBScripts" />
       </list>
     </recent_temporary>
   </component>
@@ -277,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718128966902</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="upload">
+      <option name="closed" value="true" />
+      <created>1718899914911</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718899914911</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,6 +314,17 @@
     <MESSAGE value="Обновлён вариант получения токена из env" />
     <MESSAGE value="upload" />
     <option name="LAST_COMMIT_MESSAGE" value="upload" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BookLib$DBScripts.coverage" NAME="DBScripts Coverage Results" MODIFIED="1715260267787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
