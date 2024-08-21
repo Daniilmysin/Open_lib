@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="upload">
+    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="upload redis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DBScripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBScripts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot/test/test_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/test/test_db.py" afterDir="false" />
@@ -52,7 +52,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for test_db.SimpleUnitTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_author_act.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_book_act.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_user_act.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests in test_db.py.executor&quot;: &quot;Run&quot;,
     &quot;Python.DBScripts.executor&quot;: &quot;Run&quot;,
     &quot;Python.Main.executor&quot;: &quot;Run&quot;,
@@ -83,7 +86,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Main">
+  <component name="RunManager" selected="Python.DBScripts">
     <configuration name="DBScripts" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BookLib" />
       <option name="ENV_FILES" value="" />
@@ -129,6 +132,36 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for test_db.SimpleUnitTest" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="BookLib" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bot/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_db.SimpleUnitTest&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_db.SimpleUnitTest.test_author_act" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="BookLib" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bot/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_db.SimpleUnitTest.test_author_act&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests for test_db.SimpleUnitTest.test_book_act" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="BookLib" />
       <option name="ENV_FILES" value="" />
@@ -144,10 +177,28 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for test_db.SimpleUnitTest.test_user_act" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="BookLib" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bot/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_db.SimpleUnitTest.test_user_act&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest.test_book_act" />
         <item itemvalue="Python.DBScripts" />
+        <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest" />
+        <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest.test_author_act" />
+        <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest.test_book_act" />
+        <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest.test_user_act" />
       </list>
     </recent_temporary>
   </component>
@@ -285,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718899914911</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="upload redis">
+      <option name="closed" value="true" />
+      <created>1724087793324</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1724087793324</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,7 +372,8 @@
     <MESSAGE value="Обновлён вариант получения токена, переименованы классы" />
     <MESSAGE value="Обновлён вариант получения токена из env" />
     <MESSAGE value="upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="upload" />
+    <MESSAGE value="upload redis" />
+    <option name="LAST_COMMIT_MESSAGE" value="upload redis" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
