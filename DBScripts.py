@@ -34,6 +34,7 @@ class Book(Base):
     last_update = Column(Date, onupdate=datetime.datetime.now)
     creator = Column(Integer, ForeignKey('user.id'))
     check = Column(Boolean, default=False)
+    epub = Column(String(150))
     url = Column(String(200))
 
 
@@ -211,7 +212,7 @@ class AuthorAct:
 class BookAct:
     class BookAdd(RedisManager, UserAct, AuthorAct):
         async def author_id(self, id_author, id_user) -> bool or None:
-            author = self.find_author(id_author)
+            author = await self.find_author(id_author)
             if author is None or False:
                 return author
             # заканчивается проверка автора и добавляем новую книгу в редис для дальнейших действий
@@ -231,16 +232,16 @@ class BookAct:
             data['description'] = description
             return await self.set_data(id_user, data)
 
-        async def photo(self, id_user, photo) -> bool or None:
+        async def url(self, id_user, url) -> bool or None:
             data = await self.get_data(id_user)
-            data['photo'] = photo
+            data['url'] = url
             return await self.set_data(id_user, data)
 
         async def end(self, id_user, epub) -> bool or None:
             data = await self.get_data(id_user)
             print(data)
             async with (AsyncSession(engine) as session):
-                user = self.find_user(id_user)
+                user = await self.find_user(id_user)
                 #author = self.find_author(data['author'])
                 if user is None:
                     print('юзера нет')
@@ -249,8 +250,7 @@ class BookAct:
                     name=data["name"],
                     description=data["description"],
                     author_id=data['author'],
-                    user=id_user,
-                    photo=data["photo"],
+                    creator=id_user,
                     epub=epub,
                 ))
                 try:
@@ -290,8 +290,12 @@ class BDAct:
 
 aut = AuthorAct().AuthorAdd()
 bok = BookAct().BookAdd()
-#asyncio.run(bok.end(1111,'test'))
-asyncio.run(aut.name(1111, 'иван иванович иванов'))
-asyncio.run(aut.description(1111, 'test'))
-asyncio.run(aut.photo(1111, 'photo'))
-asyncio.run(aut.end(1111))
+asyncio.run(bok.author_id(1, 1111))
+asyncio.run(bok.name(1111, 'test'))
+asyncio.run(bok.description(1111, 'test'))
+#asyncio.run(bok.url(1111, 'photo'))
+asyncio.run(bok.end(1111,'test'))
+#asyncio.run(aut.name(1111, 'иван иванович иванов'))
+#asyncio.run(aut.description(1111, 'test'))
+#asyncio.run(aut.photo(1111, 'photo'))
+#asyncio.run(aut.end(1111))
