@@ -203,6 +203,8 @@ class AuthorAct:
             except Exception as error:
                 print(f'ошибка:{error},юзер:{id_author}')
                 return False
+        if author is None:
+            print('author is None')
         return author
 
     async def delete(self, id_book, id_user) -> bool:
@@ -241,11 +243,6 @@ class BookAct:
             data = await self.get_data(id_user)
             print(data)
             async with (AsyncSession(engine) as session):
-                user = await self.find_user(id_user)
-                #author = self.find_author(data['author'])
-                if user is None:
-                    print('юзера нет')
-                    return None
                 session.add(Book(
                     name=data["name"],
                     description=data["description"],
@@ -258,8 +255,8 @@ class BookAct:
                 except Exception as Error:
                     print(Error)
                     return False
-                await self.del_data(id_user)
-                return True
+            await self.del_data(id_user)
+            return True
 
 
 class BDAct:
@@ -290,12 +287,12 @@ class BDAct:
 
 aut = AuthorAct().AuthorAdd()
 bok = BookAct().BookAdd()
-asyncio.run(bok.author_id(1, 1111))
-asyncio.run(bok.name(1111, 'test'))
-asyncio.run(bok.description(1111, 'test'))
+#asyncio.run(bok.author_id(4, 1111))
+#asyncio.run(bok.name(1111, 'test'))
+#asyncio.run(bok.description(1111, 'test'))
 #asyncio.run(bok.url(1111, 'photo'))
-asyncio.run(bok.end(1111,'test'))
-#asyncio.run(aut.name(1111, 'иван иванович иванов'))
-#asyncio.run(aut.description(1111, 'test'))
-#asyncio.run(aut.photo(1111, 'photo'))
-#asyncio.run(aut.end(1111))
+#asyncio.run(bok.end(1111,'test'))
+asyncio.run(aut.name(1111, 'иван иванович иванав'))
+asyncio.run(aut.description(1111, 'test'))
+asyncio.run(aut.photo(1111, 'photo'))
+asyncio.run(aut.end(1111))
