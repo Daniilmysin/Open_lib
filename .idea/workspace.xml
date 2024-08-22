@@ -7,6 +7,7 @@
     <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="upload redis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DBScripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBScripts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/test/test_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/test/test_db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +86,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Main">
+  <component name="RunManager" selected="Python.DBScripts">
     <configuration name="DBScripts" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BookLib" />
       <option name="ENV_FILES" value="" />
@@ -408,13 +409,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/DBScripts.py</url>
-          <line>244</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

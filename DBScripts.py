@@ -90,8 +90,7 @@ class RedisManager:
                 return None
             if data:
                 return orjson.loads(data)
-
-            return None
+            return False
 
     async def del_data(self, key):
         async with self.redis as r:
@@ -105,38 +104,44 @@ class RedisManager:
 
 
 class UserAct:
-    @staticmethod
-    async def add_user(user_id, name):
-        async with AsyncSession(engine) as session:
-            session.add(User(id=user_id,
-                             name=name))
-            await session.commit()
-        return
-
-    @staticmethod
-    async def ban_user(id_user, ban: bool = True):
-        async with AsyncSession(engine) as session:
-            try:
-                result_user = await session.execute(select(User).filter_by(id=id_user))
-                result = result_user.scalar_one_or_none()
-            except Exception as error:
-                print(f'ошибка:{error},юзер:{id_user}')
-                return False
-            session.add(User(id=result,
-                             ban=ban))
-            await session.commit()
-        return True
-
     async def find_user(self, id_user):
         async with AsyncSession(engine) as session:
             try:
                 result_user = await session.execute(select(User).filter_by(id=id_user))
                 result = result_user.scalar_one_or_none()
             except Exception as error:
-                print(f'ошибка: {error} ,юзер: {id_user} ')
+                print(f'найти юзера ошибка: {error} ,юзер: {id_user} ')
                 return False
             await session.commit()
         return result
+
+    @staticmethod
+    async def add_user(user_id, name):
+        async with AsyncSession(engine) as session:
+            session.add(User(id=user_id,
+                             name=name))
+            await session.commit()
+        return True
+
+    async def ban_user(self, id_user, ban_bool: bool = True):
+        user = await self.find_user(id_user)
+        async with AsyncSession(engine) as session:
+            if user:
+                user.ban = ban_bool
+            else:
+                return False
+            await session.commit()
+        return True
+
+    async def admin_user(self, id_user, admin_bool: bool):
+        user = await self.find_user(id_user)
+        async with AsyncSession(engine) as session:
+            if user:
+                user.admin = admin_bool
+            else:
+                return False
+            await session.commit()
+        return True
 
     @staticmethod
     async def change_user(user_id, change: dict):
@@ -191,8 +196,8 @@ class AuthorAct:
                 except Exception as error:
                     print(error)
                     return False
-                await self.del_data(id_user)
-                return True
+            await self.del_data(id_user)
+            return True
 
     async def find_author(self, id_author):
         async with AsyncSession(engine) as session:
@@ -201,7 +206,7 @@ class AuthorAct:
             try:
                 await session.commit()
             except Exception as error:
-                print(f'ошибка:{error},юзер:{id_author}')
+                print(f'поиск автора ошибка:{error},юзер:{id_author}')
                 return False
         if author is None:
             print('author is None')
@@ -284,15 +289,17 @@ class BDAct:
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
 
-
+usr = UserAct()
 aut = AuthorAct().AuthorAdd()
 bok = BookAct().BookAdd()
+asyncio.run(usr.ban_user(1111, True))
+asyncio.run(usr.admin_user(1111, True))
 #asyncio.run(bok.author_id(4, 1111))
 #asyncio.run(bok.name(1111, 'test'))
 #asyncio.run(bok.description(1111, 'test'))
 #asyncio.run(bok.url(1111, 'photo'))
 #asyncio.run(bok.end(1111,'test'))
-asyncio.run(aut.name(1111, 'иван иванович иванав'))
-asyncio.run(aut.description(1111, 'test'))
-asyncio.run(aut.photo(1111, 'photo'))
-asyncio.run(aut.end(1111))
+#asyncio.run(aut.name(1111, 'иван иванович иванав'))
+#asyncio.run(aut.description(1111, 'test'))
+#asyncio.run(aut.photo(1111, 'photo'))
+#asyncio.run(aut.end(1111))

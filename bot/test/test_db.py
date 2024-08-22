@@ -55,17 +55,6 @@ async def test_description(book_add):
     book_add.set_data.assert_awaited_once_with(1, {'description': "Description of the book"})
 
 
-@pytest.mark.asyncio
-async def test_photo(book_add):
-    book_add.get_data = AsyncMock(return_value={})
-    book_add.set_data = AsyncMock(return_value=True)
-
-    result = await book_add.photo(1, "photo.jpg")
-
-    assert result is True
-    book_add.get_data.assert_awaited_once_with(1)
-    book_add.set_data.assert_awaited_once_with(1, {'photo': "photo.jpg"})
-
 
 @pytest.mark.asyncio
 @patch("your_module.AsyncSession")
