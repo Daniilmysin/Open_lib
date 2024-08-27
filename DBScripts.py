@@ -26,24 +26,17 @@ class Book(Base):
     __tablename__ = 'book'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(150))
-    author_id = Column(Integer, ForeignKey('author.id'))
-    author = relationship("Author")
+    author_id = Column(Integer, ForeignKey('author.id')) # ссылка на автора
     description = Column(Text)
-    teg = Column(TSVECTOR)
-    search = Column(TSVECTOR)
-    last_update = Column(Date, onupdate=datetime.datetime.now)
-    creator = Column(Integer, ForeignKey('user.id'))
+    creator = Column(Integer, ForeignKey('user.id')) # ссылка на того что добавил книгу
     check = Column(Boolean, default=False)
     epub = Column(String(150))
-    url = Column(String(200))
 
 
 class Author(Base):
     __tablename__ = 'author'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100))
-    last_name = Column(String(100))
-    patronymic = Column(String(100))
     creator = Column(Integer, ForeignKey("user.id"))
     description = Column(Text)
     photo = Column(String(100))
@@ -151,42 +144,22 @@ class UserAct:
 class AuthorAct:
     class AuthorAdd(RedisManager, UserAct):
         async def name(self, id_user, name) -> bool:
-            name_list = name.split()
             data = {
-                "name": name_list[0],
-                "surname": name_list[1],
-                "patronymic": name_list[2],
-                "id": id_user
+                "name": name
             }
             return await self.set_data(id_user, data)
 
-        async def url(self, id_user, url) -> bool or None:
+        async def add_data(self, id_user, add_data, key) -> bool or None:
             data = await self.get_data(id_user)
-            data["url"] = url
-            return await self.set_data(id_user, data)
-
-        async def description(self, id_user, description) -> bool or None:
-            data = await self.get_data(id_user)
-            data["description"] = description
-            return await self.set_data(id_user, data)
-
-        async def photo(self, id_user, photo) -> bool or None:
-            data = await self.get_data(id_user)
-            data["photo"] = photo
+            data[str(key)] = add_data
             return await self.set_data(id_user, data)
 
         async def end(self, id_user) -> bool:
             data = await self.get_data(id_user)
-            user = await self.find_user(id_user)
-            if user is None:
-                print('user is not exist')
-                return False
             print(data)
             async with AsyncSession(engine) as session:
                 session.add(Author(
                     name=data['name'],
-                    last_name=data['surname'],
-                    patronymic=data['patronymic'],
                     description=data['description'],
                     photo=data['photo'],
                     creator=id_user
@@ -209,7 +182,7 @@ class AuthorAct:
                 print(f'поиск автора ошибка:{error},юзер:{id_author}')
                 return False
         if author is None:
-            print('author is None')
+            print('author is not exist')
         return author
 
     async def delete(self, id_book, id_user) -> bool:
@@ -229,19 +202,9 @@ class BookAct:
             }
             return await self.set_data(id_user, data)
 
-        async def name(self, id_user, name) -> bool or None:
+        async def add_data(self, id_user, add_data, key:str) -> bool or None:
             data = await self.get_data(id_user)
-            data['name'] = name
-            return await self.set_data(id_user, data)
-
-        async def description(self, id_user, description) -> bool or None:
-            data = await self.get_data(id_user)
-            data['description'] = description
-            return await self.set_data(id_user, data)
-
-        async def url(self, id_user, url) -> bool or None:
-            data = await self.get_data(id_user)
-            data['url'] = url
+            data[key] = add_data
             return await self.set_data(id_user, data)
 
         async def end(self, id_user, epub) -> bool or None:
@@ -265,14 +228,14 @@ class BookAct:
 
 
 class BDAct:
-    async def search(self, search, where_search="id"):
+    async def search(self, search, where_search="id"):# чисто тестовая функция чтобы разобраться как работает запросы к бд
         async with (AsyncSession(engine) as session):
             if where_search == "id":
-                stmt = select(Book).filter_by(Book.id == search)
+                stmt = select(Book).filter_by(id=search)
             elif where_search == ("Name"):
-                stmt = select(Book.id).filter_by(Book.name == search)
+                stmt = select(Book.id).filter_by(name=search)
             elif where_search == ("dis"):
-                stmt = select(Book.name).filter_by(Book.description == search)
+                stmt = select(Book.name).filter_by(description=search)
             result = await session.execute(select(User))
             users = result.scalars().all()
             #a1 = result.scalars().all()
@@ -288,18 +251,3 @@ class BDAct:
     async def make_bd():
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
-
-usr = UserAct()
-aut = AuthorAct().AuthorAdd()
-bok = BookAct().BookAdd()
-asyncio.run(usr.ban_user(1111, True))
-asyncio.run(usr.admin_user(1111, True))
-#asyncio.run(bok.author_id(4, 1111))
-#asyncio.run(bok.name(1111, 'test'))
-#asyncio.run(bok.description(1111, 'test'))
-#asyncio.run(bok.url(1111, 'photo'))
-#asyncio.run(bok.end(1111,'test'))
-#asyncio.run(aut.name(1111, 'иван иванович иванав'))
-#asyncio.run(aut.description(1111, 'test'))
-#asyncio.run(aut.photo(1111, 'photo'))
-#asyncio.run(aut.end(1111))

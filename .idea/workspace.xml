@@ -7,7 +7,6 @@
     <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="upload redis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DBScripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBScripts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot/test/test_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/test/test_db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -376,7 +375,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724248918778</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="upload redis">
+      <option name="closed" value="true" />
+      <created>1724325993627</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1724325993627</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
