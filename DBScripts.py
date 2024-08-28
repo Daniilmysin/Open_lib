@@ -1,7 +1,7 @@
 from sqlalchemy import Integer, String, \
     Column, Date, ForeignKey, Text, Boolean, select
 from sqlalchemy.dialects.postgresql import TSVECTOR
-import asyncio, logging, datetime  # асинк нужен для тестов
+import logging
 from sqlalchemy.orm import DeclarativeBase, relationship
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, AsyncAttrs
 from dotenv import load_dotenv
@@ -108,12 +108,17 @@ class UserAct:
             await session.commit()
         return result
 
-    @staticmethod
-    async def add_user(user_id, name):
+    async def add_user(self, id_user, name):
+        user = await self.find_user(id_user)
+        if user is not None:
+            return True
         async with AsyncSession(engine) as session:
-            session.add(User(id=user_id,
-                             name=name))
-            await session.commit()
+            try:
+                session.add(User(id=id_user,
+                                 name=name))
+                await session.commit()
+            except Exception as error:
+                print(f'ошибка добавления юзера: {error}')
         return True
 
     async def ban_user(self, id_user, ban_bool: bool = True):
@@ -204,10 +209,12 @@ class BookAct:
 
         async def add_data(self, id_user, add_data, key:str) -> bool or None:
             data = await self.get_data(id_user)
+            if data is bool:
+                return data
             data[key] = add_data
             return await self.set_data(id_user, data)
 
-        async def end(self, id_user, epub) -> bool or None:
+        async def end(self, id_user) -> bool or None:
             data = await self.get_data(id_user)
             print(data)
             async with (AsyncSession(engine) as session):
@@ -216,7 +223,7 @@ class BookAct:
                     description=data["description"],
                     author_id=data['author'],
                     creator=id_user,
-                    epub=epub,
+                    epub=data['epub'],
                 ))
                 try:
                     await session.commit()
