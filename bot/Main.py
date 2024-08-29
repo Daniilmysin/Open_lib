@@ -2,7 +2,7 @@ import asyncio, logging
 from aiogram import Bot, Dispatcher
 from Handlers.user import Add_book, other
 from Handlers.debug import info
-from DBScripts import BDAct
+from models import db_act
 import os
 
 Bot_token = str(os.getenv("bot"))
@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO, filename="py_bot.log", format="%(asctime
 async def main():
     # Объект бота
     try:
-        await BDAct.make_bd()
+        await db_act.make_bd()
     except Exception as error:
         print("Ошибка создания базы данных: error")
     # Диспетчер

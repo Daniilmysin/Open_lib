@@ -1,14 +1,16 @@
+import os
+
 from aiogram import Router, F
-from aiogram.types import Message
-from DBScripts import BookAct, RedisManager
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
+from aiogram.types import Message
+
 from bot.Main import bot
-import os
+from models import BookAdd
+from models import RedisManager
 
 rt = Router()
-BookAdd = BookAct.BookAdd
 
 
 class AddingBook(StatesGroup):
@@ -102,15 +104,14 @@ async def ins_book_name(message: Message, state: FSMContext):
         await state.set_state(AddingBook.get_adder_name)
 
 
-
 @rt.message(F.document, AddingBook.get_adder_epub)
 async def ins_book_files_epub(message: Message, state: FSMContext):
     """принимает файл с книгой(В РАЗРАБОТКЕ)"""
     document = message.document
     data = RedisManager().get_data(message.from_user.id)
-    new_name = transliterate(data['name'])
+    new_name = transliterate(data['name'])  # именует латиницей
     top_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
-    save_folder = os.path.join(top_folder, 'books',)
+    save_folder = os.path.join(top_folder, 'books', new_name)
     file_info = await bot.get_file(document.file_id)
     downloaded_file = await bot.download_file(file_info.file_path)
     destination = os.path.join(save_folder, document.file_name)
@@ -120,7 +121,7 @@ async def ins_book_files_epub(message: Message, state: FSMContext):
     await BookAdd().add_data(message.from_user.id, str(destination), 'epub')
     await message.reply("Файл сохранен")
     book = await RedisManager().get_data(message.from_user.id)
-    await message.answer('Книга будет выглядеть так: \n' + book['name'] +'\nОписание: \n' + book['description'])
+    await message.answer('Книга будет выглядеть так: \n' + book['name'] + '\nОписание: \n' + book['description'])
     await state.set_state(AddingBook.end)
 
 
@@ -132,7 +133,6 @@ async def end(message: Message, state: FSMContext):
         await message.answer("Книга сохранена")
     else:
         await message.answer("Что-то сломалось")
-
 
 
 @rt.message(Command("stop"))
