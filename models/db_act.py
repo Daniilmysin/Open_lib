@@ -1,11 +1,12 @@
 import orjson
 import os
 import redis.asyncio as aioredis
+from dotenv import load_dotenv
 from sqlalchemy import Integer, String, \
     Column, ForeignKey, Text, Boolean, select
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase, relationship
-
+load_dotenv()
 user = str(os.getenv("user"))
 passwd = str(os.getenv("passwd"))
 host = str(os.getenv("host"))

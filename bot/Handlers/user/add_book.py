@@ -1,16 +1,20 @@
 import os
+import secrets
 
-from aiogram import Router, F
+from aiogram import Router, F, types
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message
 
+from bot.keyboard import get_keyboard_save_book
 from bot.Main import bot
 from models import BookAdd
 from models import RedisManager
+from bot.scripts import transliterate
 
 rt = Router()
+folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 
 
 class AddingBook(StatesGroup):
@@ -22,38 +26,11 @@ class AddingBook(StatesGroup):
     end = State()
 
 
-def transliterate(text):
-    # Словарь с соответствиями русских букв и латиницы
-    translit_dict = {
-        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
-        'е': 'e', 'ё': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i',
-        'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n',
-        'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't',
-        'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch',
-        'ш': 'sh', 'щ': 'sh', 'ы': 'y', 'э': 'e', 'ю': 'yu',
-        'я': 'ya', 'ь': '', 'ъ': '', ' ': '_',
-        'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D',
-        'Е': 'E', 'Ё': 'E', 'Ж': 'Zh', 'З': 'Z', 'И': 'I',
-        'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N',
-        'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T',
-        'У': 'U', 'Ф': 'F', 'Х': 'Kh', 'Ц': 'Ts', 'Ч': 'Ch',
-        'Ш': 'Sh', 'Щ': 'Sh', 'Ы': 'Y', 'Э': 'E', 'Ю': 'Yu',
-        'Я': 'Ya', 'Ь': '', 'Ъ': '',
-    }
-
-    # Заменяем русские буквы на латиницу
-    result = []
-    for char in text:
-        result.append(translit_dict.get(char, char))
-
-    return ''.join(result)
-
-
-@rt.message(F.data() == "add_book")
-async def ins_book(message: Message, state: FSMContext):
+@rt.callback_query(F.data == "add_book")
+async def ins_book(callback: types.CallbackQuery, state: FSMContext):
     """Начинает процесс добавления книги"""
-    await message.answer("Введите ID Автора."
-                         "Если автора нет в базе данных, то добавьте его с помощью /add_author")
+    await callback.message.answer("Введите ID Автора."
+                                  "Если автора нет в базе данных, то добавьте его с помощью /add_author")
     await state.set_state(AddingBook.get_adder_author)
 
 
@@ -107,22 +84,33 @@ async def ins_book_name(message: Message, state: FSMContext):
 @rt.message(F.document, AddingBook.get_adder_epub)
 async def ins_book_files_epub(message: Message, state: FSMContext):
     """принимает файл с книгой(В РАЗРАБОТКЕ)"""
-    document = message.document
-    data = RedisManager().get_data(message.from_user.id)
-    new_name = transliterate(data['name'])  # именует латиницей
-    top_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
-    save_folder = os.path.join(top_folder, 'books', new_name)
-    file_info = await bot.get_file(document.file_id)
-    downloaded_file = await bot.download_file(file_info.file_path)
-    destination = os.path.join(save_folder, document.file_name)
 
-    with open(destination, 'wb') as f:
-        f.write(downloaded_file.read())
-    await BookAdd().add_data(message.from_user.id, str(destination), 'epub')
-    await message.reply("Файл сохранен")
-    book = await RedisManager().get_data(message.from_user.id)
-    await message.answer('Книга будет выглядеть так: \n' + book['name'] + '\nОписание: \n' + book['description'])
-    await state.set_state(AddingBook.end)
+    book = await RedisManager().get_data(message.from_user.id)  # получаем книгу
+    save_folder = os.path.join(folder, 'books')
+    name = str(await transliterate(book['name'])) + '_' + str(secrets.token_hex(16))  # создание имени файла с токеном
+
+    document = message.document                                    # получаем документ
+    file_info = await bot.get_file(document.file_id)
+    print(str(os.path.splitext(document.file_name)[1]))
+    if str(os.path.splitext(document.file_name)[1]) != '.epub':
+        await message.reply("Файл не epub, отправьте ещё раз")
+    else:
+        new_file_name = name + os.path.splitext(document.file_name)[1]
+        downloaded_file = await bot.download_file(file_info.file_path) # скачиваем
+        destination = os.path.join(save_folder, new_file_name)
+
+        try:
+            with open(destination, 'wb') as f:                             # сохраняем
+                f.write(downloaded_file.read())
+        except Exception as Error:
+            print(f'Ошибка открытия файла:{Error}')
+            await message.reply("Ошибка открытия и сохранения файла, возможно файл побит")
+
+        await BookAdd().add_data(message.from_user.id, str(destination), 'epub')
+        await message.reply("Файл сохранен")
+        await message.answer('Книга будет выглядеть так: \n' + book['name'] + '\nОписание: \n' + book['description'],
+                             reply_markup=get_keyboard_save_book())
+        await state.set_state(AddingBook.end)
 
 
 @rt.message(F.text.lower() == 'сохранить', AddingBook.end)
@@ -131,8 +119,10 @@ async def end(message: Message, state: FSMContext):
     status = await BookAdd().end(message.from_user.id)
     if status is True:
         await message.answer("Книга сохранена")
+        await state.clear()
     else:
         await message.answer("Что-то сломалось")
+        await state.set_state(AddingBook.end)
 
 
 @rt.message(Command("stop"))

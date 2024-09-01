@@ -1,7 +1,7 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from db_act import RedisManager, engine, Author
+from models import RedisManager, engine, Author
 
 
 class AddAuthor(RedisManager):

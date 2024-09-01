@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="upload redis and SQL">
-      <change afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/author_act.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/book_act.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/db_act.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/user_act.py" afterDir="false" />
+    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="добавил модели и повысил читабельность кода">
+      <change afterPath="$PROJECT_DIR$/bot/scripts.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bot/test/test_script.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBScripts.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/Add_book.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/Add_book.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/other.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/other.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/Add_book.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/add_book.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/keyboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/keyboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/author_act.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/author_act.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/book_act.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/book_act.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/db_act.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/db_act.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Python Unit Test" />
       </list>
     </option>
   </component>
@@ -34,6 +36,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -62,9 +65,12 @@
     &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_author_act.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_book_act.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_user_act.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_script.MyTestCase.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests in test_db.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_script.py.executor&quot;: &quot;Run&quot;,
     &quot;Python.DBScripts.executor&quot;: &quot;Run&quot;,
     &quot;Python.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scripts.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;add__redis&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/apelsin/PycharmProjects/test&quot;,
@@ -168,7 +174,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_db.SimpleUnitTest.test_book_act" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_script.MyTestCase" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="BookLib" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -179,11 +185,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_db.SimpleUnitTest.test_book_act&quot;" />
+      <option name="_new_target" value="&quot;test_script.MyTestCase&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_db.SimpleUnitTest.test_user_act" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests in test_script.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="BookLib" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -194,17 +200,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_db.SimpleUnitTest.test_user_act&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/bot/test/test_script.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests in test_script.py" />
+        <item itemvalue="Python tests.Python tests for test_script.MyTestCase" />
         <item itemvalue="Python.DBScripts" />
         <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest" />
         <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest.test_author_act" />
-        <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest.test_book_act" />
-        <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest.test_user_act" />
       </list>
     </recent_temporary>
   </component>
@@ -406,7 +412,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724867363313</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="добавил модели и повысил читабельность кода">
+      <option name="closed" value="true" />
+      <created>1724933799783</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1724933799783</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +450,8 @@
     <MESSAGE value="upload" />
     <MESSAGE value="upload redis" />
     <MESSAGE value="upload redis and SQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="upload redis and SQL" />
+    <MESSAGE value="добавил модели и повысил читабельность кода" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил модели и повысил читабельность кода" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

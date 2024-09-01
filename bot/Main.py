@@ -1,14 +1,20 @@
-import asyncio, logging
-from aiogram import Bot, Dispatcher
-from Handlers.user import Add_book, other
-from Handlers.debug import info
-from models import db_act
+import asyncio
+import logging
 import os
 
-Bot_token = str(os.getenv("bot"))
+from aiogram import Bot, Dispatcher
+from dotenv import load_dotenv
+
+from Handlers.debug import info
+from Handlers.user import add_book, other
+from models import db_act
+
+load_dotenv()
+Bot_token = str(os.getenv('bot'))
+
 bot = Bot(token=Bot_token)
 
-logging.basicConfig(level=logging.INFO, filename="py_bot.log", format="%(asctime)s %(levelname)s %(message)s")
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 
 # Запуск бота
@@ -17,11 +23,10 @@ async def main():
     try:
         await db_act.make_bd()
     except Exception as error:
-        print("Ошибка создания базы данных: error")
+        print(f"Ошибка создания базы данных: {error}")
     # Диспетчер
     dp = Dispatcher()
     dp.include_routers(Add_book.rt, other.rt, info.rt)
-    await bot.delete_webhook(drop_pending_updates=True)  # удаляем вебхуки
     await dp.start_polling(bot)  # запускаем
 
 
