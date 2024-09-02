@@ -4,15 +4,14 @@ import os
 
 from aiogram import Bot, Dispatcher
 from dotenv import load_dotenv
-
 from Handlers.debug import info
-from Handlers.user import add_book, other
+from Handlers.user import add_book, add_author, other
 from models import db_act
 
 load_dotenv()
 Bot_token = str(os.getenv('bot'))
-
 bot = Bot(token=Bot_token)
+
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
@@ -26,7 +25,7 @@ async def main():
         print(f"Ошибка создания базы данных: {error}")
     # Диспетчер
     dp = Dispatcher()
-    dp.include_routers(Add_book.rt, other.rt, info.rt)
+    dp.include_routers(add_book.rt, other.rt, info.rt, add_author.rt)
     await dp.start_polling(bot)  # запускаем
 
 

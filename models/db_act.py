@@ -6,6 +6,7 @@ from sqlalchemy import Integer, String, \
     Column, ForeignKey, Text, Boolean, select
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase, relationship
+
 load_dotenv()
 user = str(os.getenv("user"))
 passwd = str(os.getenv("passwd"))
@@ -25,7 +26,7 @@ class Book(Base):
     description = Column(Text)
     creator = Column(Integer, ForeignKey('user.id'))  # ссылка на того что добавил книгу
     check = Column(Boolean, default=False)
-    epub = Column(String(150))
+    file = Column(String(150))
 
 
 class Author(Base):
@@ -89,21 +90,6 @@ class RedisManager:
                 # Обработка ошибки
                 print(f"Error deleting: {e}")
                 return False
-
-
-async def search(search, where_search="id"):  # чисто тестовая функция чтобы разобраться как работает запросы к бд
-    async with (AsyncSession(engine) as session):
-        if where_search == "id":
-            stmt = select(Book).filter_by(id=search)
-        elif where_search == ("Name"):
-            stmt = select(Book.id).filter_by(name=search)
-        elif where_search == ("dis"):
-            stmt = select(Book.name).filter_by(description=search)
-        result = await session.execute(select(User))
-        users = result.scalars().all()
-        # a1 = result.scalars().all()
-        print("========")
-        print(users)
 
 
 async def del_db():
