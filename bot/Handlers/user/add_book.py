@@ -7,7 +7,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message
 
-from bot.keyboard import get_keyboard_save_book, get_keyboard
+from bot.keyboard import get_keyboard_save, get_keyboard
 from models import BookAdd
 from models import RedisManager
 from bot.scripts import transliterate
@@ -109,19 +109,19 @@ async def ins_book_files_epub(message: Message, state: FSMContext):
         await BookAdd().add_data(message.from_user.id, str(name), 'epub')
         await message.reply("Файл сохранен")
         await message.answer('Книга будет выглядеть так: \n' + book['name'] + '\nОписание: \n' + book['description'],
-                             reply_markup=get_keyboard_save_book())
+                             reply_markup=get_keyboard_save('book'))
         await state.set_state(AddingBook.end)
 
 
-@rt.message(F.data() == 'save_book', AddingBook.end)
-async def end(message: Message, state: FSMContext):
+@rt.callback_query(F.data == 'save_book', AddingBook.end)
+async def end(callback: types.CallbackQuery, state: FSMContext):
     """Запускает скрипт с загрузкой книги в базу данных"""
-    status = await BookAdd().end(message.from_user.id)
+    status = await BookAdd().end(callback.message.from_user.id)
     if status is True:
-        await message.answer("Книга сохранена")
+        await callback.message.answer("Книга сохранена")
         await state.clear()
     else:
-        await message.answer("Что-то сломалось")
+        await callback.message.answer("Что-то сломалось")
         await state.set_state(AddingBook.end)
 
 

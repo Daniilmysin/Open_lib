@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="fix bugs">
-      <change afterPath="$PROJECT_DIR$/bot/Handlers/user/add_author.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Handlers/debug/info.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/debug/info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/add_author.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/add_author.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot/Handlers/user/add_book.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/add_book.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/keyboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/keyboard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/db_act.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/db_act.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,35 +17,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Unit Test" />
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Daniilmysin&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Daniilmysin/webapp_kupi_blyat&quot;,
-    &quot;accountId&quot;: &quot;6b8d8099-be5e-42da-a155-43752aab7195&quot;
-  }
-}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -54,69 +29,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for test_db.SimpleUnitTest.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_author_act.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_book_act.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_db.SimpleUnitTest.test_user_act.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_script.MyTestCase.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_db.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_script.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python.DBScripts.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Main.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.scripts.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;add__redis&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/apelsin/PycharmProjects/test&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.DBScripts.executor": "Run",
+    "Python.Main.executor": "Run",
+    "Python.add_author.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "test",
+    "last_opened_file_path": "/home/apelsin/PycharmProjects/BookLib/bot/Main.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "database.query.execution",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;
-    ],
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/bot" />
-      <recent name="$PROJECT_DIR$/bot/Handlers" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Python.Main">
-    <configuration name="DBScripts" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="BookLib" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DBScripts.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+}]]></component>
+  <component name="RunManager">
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="BookLib" />
       <option name="ENV_FILES" value="" />
@@ -126,8 +62,9 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bot" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_NAME" value="Python 3.10 (BookLib)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bot/Main.py" />
@@ -139,75 +76,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_db.SimpleUnitTest" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="BookLib" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bot/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_db.SimpleUnitTest&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_db.SimpleUnitTest.test_author_act" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="BookLib" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bot/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_db.SimpleUnitTest.test_author_act&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for test_script.MyTestCase" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="BookLib" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bot/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_script.MyTestCase&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests in test_script.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="BookLib" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bot/test" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/bot/test/test_script.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python tests.Python tests in test_script.py" />
-        <item itemvalue="Python tests.Python tests for test_script.MyTestCase" />
-        <item itemvalue="Python.DBScripts" />
-        <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest" />
-        <item itemvalue="Python tests.Python tests for test_db.SimpleUnitTest.test_author_act" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -226,261 +94,21 @@
       <updated>1714997787360</updated>
       <workItem from="1715116119086" duration="517000" />
       <workItem from="1715195086497" duration="2609000" />
-      <workItem from="1715248789426" duration="11299000" />
-      <workItem from="1715277976456" duration="7122000" />
-      <workItem from="1715336414331" duration="2203000" />
-      <workItem from="1715788401753" duration="5599000" />
+      <workItem from="1715248789426" duration="10637000" />
     </task>
-    <task id="LOCAL-00001" summary="1">
-      <option name="closed" value="true" />
-      <created>1715259788526</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1715259788526</updated>
-    </task>
-    <task id="LOCAL-00002" summary="1">
-      <option name="closed" value="true" />
-      <created>1715293965112</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1715293965112</updated>
-    </task>
-    <task id="LOCAL-00003" summary="убрал класс добавления книги">
-      <option name="closed" value="true" />
-      <created>1717849831017</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1717849831017</updated>
-    </task>
-    <task id="LOCAL-00004" summary="добавил класс обратно...">
-      <option name="closed" value="true" />
-      <created>1717929307634</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1717929307634</updated>
-    </task>
-    <task id="LOCAL-00005" summary="добавлен поиск">
-      <option name="closed" value="true" />
-      <created>1717936752051</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1717936752051</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Правки">
-      <option name="closed" value="true" />
-      <created>1718016264330</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1718016264330</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Повышена читабельность и красота...">
-      <option name="closed" value="true" />
-      <created>1718027537406</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1718027537406</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Обновлён вариант получения токена">
-      <option name="closed" value="true" />
-      <created>1718027609490</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1718027609490</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Обновлён вариант получения токена, переименованы классы">
-      <option name="closed" value="true" />
-      <created>1718027721566</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1718027721566</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Обновлён вариант получения токена из env">
-      <option name="closed" value="true" />
-      <created>1718027766195</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1718027766195</updated>
-    </task>
-    <task id="LOCAL-00011" summary="upload">
-      <option name="closed" value="true" />
-      <created>1718027806265</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1718027806265</updated>
-    </task>
-    <task id="LOCAL-00012" summary="upload">
-      <option name="closed" value="true" />
-      <created>1718029573168</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1718029573168</updated>
-    </task>
-    <task id="LOCAL-00013" summary="upload">
-      <option name="closed" value="true" />
-      <created>1718128966902</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1718128966902</updated>
-    </task>
-    <task id="LOCAL-00014" summary="upload">
-      <option name="closed" value="true" />
-      <created>1718899914911</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1718899914911</updated>
-    </task>
-    <task id="LOCAL-00015" summary="upload redis">
-      <option name="closed" value="true" />
-      <created>1724087793324</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1724087793324</updated>
-    </task>
-    <task id="LOCAL-00016" summary="upload redis">
-      <option name="closed" value="true" />
-      <created>1724242703563</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1724242703563</updated>
-    </task>
-    <task id="LOCAL-00017" summary="upload redis">
-      <option name="closed" value="true" />
-      <created>1724247623429</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1724247623429</updated>
-    </task>
-    <task id="LOCAL-00018" summary="upload redis">
-      <option name="closed" value="true" />
-      <created>1724248879627</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1724248879627</updated>
-    </task>
-    <task id="LOCAL-00019" summary="upload redis">
-      <option name="closed" value="true" />
-      <created>1724248918778</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1724248918778</updated>
-    </task>
-    <task id="LOCAL-00020" summary="upload redis">
-      <option name="closed" value="true" />
-      <created>1724325993627</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1724325993627</updated>
-    </task>
-    <task id="LOCAL-00021" summary="upload redis and SQL">
-      <option name="closed" value="true" />
-      <created>1724759067524</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1724759067524</updated>
-    </task>
-    <task id="LOCAL-00022" summary="upload redis and SQL">
-      <option name="closed" value="true" />
-      <created>1724867363313</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1724867363313</updated>
-    </task>
-    <task id="LOCAL-00023" summary="добавил модели и повысил читабельность кода">
-      <option name="closed" value="true" />
-      <created>1724933799783</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1724933799783</updated>
-    </task>
-    <task id="LOCAL-00024" summary="fix bugs">
-      <option name="closed" value="true" />
-      <created>1725195339979</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1725195339979</updated>
-    </task>
-    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="1" />
-    <MESSAGE value="убрал класс добавления книги" />
-    <MESSAGE value="добавил класс обратно..." />
-    <MESSAGE value="добавлен поиск" />
-    <MESSAGE value="Правки" />
-    <MESSAGE value="Повышена читабельность и красота..." />
-    <MESSAGE value="Обновлён вариант получения токена" />
-    <MESSAGE value="Обновлён вариант получения токена, переименованы классы" />
-    <MESSAGE value="Обновлён вариант получения токена из env" />
-    <MESSAGE value="upload" />
-    <MESSAGE value="upload redis" />
-    <MESSAGE value="upload redis and SQL" />
-    <MESSAGE value="добавил модели и повысил читабельность кода" />
-    <MESSAGE value="fix bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bugs" />
-  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/bot/Handlers/user/add_author.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-      <default-breakpoints>
-        <breakpoint type="python-exception">
-          <properties notifyOnTerminate="true" exception="BaseException">
-            <option name="notifyOnTerminate" value="true" />
-          </properties>
-        </breakpoint>
-      </default-breakpoints>
-    </breakpoint-manager>
     <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="message.date" />
-      </configuration>
+      <inline-watch fileUrl="file://$PROJECT_DIR$/models/author_act.py" line="18">
+        <watch expression="id_user" language="Python" />
+      </inline-watch>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BookLib$DBScripts.coverage" NAME="DBScripts Coverage Results" MODIFIED="1715260267787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BookLib$DBScripts.coverage" NAME="DBScripts Coverage Results" MODIFIED="1715258240919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

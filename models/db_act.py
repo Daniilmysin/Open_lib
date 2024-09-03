@@ -63,11 +63,13 @@ class RedisManager:
                 serialized_data = orjson.dumps(data)
                 await r.set(key, serialized_data)
                 await r.aclose()
-                return True
+
             except Exception as e:
                 # Обработка ошибки
                 print(f"Error setting data: {e}")
                 return False
+            return True
+
 
     async def get_data(self, key):
         async with self.redis as r:
