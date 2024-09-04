@@ -3,7 +3,7 @@ import os
 import redis.asyncio as aioredis
 from dotenv import load_dotenv
 from sqlalchemy import Integer, String, \
-    Column, ForeignKey, Text, Boolean, select
+    Column, ForeignKey, Text, Boolean, select, JSON
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase, relationship
 
@@ -27,6 +27,7 @@ class Book(Base):
     creator = Column(Integer, ForeignKey('user.id'))  # ссылка на того что добавил книгу
     check = Column(Boolean, default=False)
     file = Column(String(150))
+    formats = Column(JSON)
 
 
 class Author(Base):
@@ -70,6 +71,31 @@ class RedisManager:
                 return False
             return True
 
+    async def set_array(self, key, format):
+        async with self.redis as r:
+            try:
+                data = await r.get(key)
+            except Exception as e:
+                # Обработка ошибки
+                print(f"Error getting data: {e}")
+                return None
+
+            if 'formats' in data:
+                if format not in data['formats']:
+                    data['formats'].append(format)
+            else:
+                # Если списка форматов нет, создаем его
+                data['formats'] = [format]
+            try:
+                serialized_data = orjson.dumps(data)
+                await r.set(key, serialized_data)
+                await r.aclose()
+
+            except Exception as e:
+                # Обработка ошибки
+                print(f"Error setting data: {e}")
+                return False
+            return True
 
     async def get_data(self, key):
         async with self.redis as r:
