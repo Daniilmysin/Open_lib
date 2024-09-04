@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="fix bugs">
+    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="добавлена возможность добавлять автора">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot/Handlers/debug/info.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/debug/info.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot/Handlers/user/add_author.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/add_author.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot/Handlers/user/add_book.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/add_book.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot/keyboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/keyboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/db_act.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/db_act.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,29 +28,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.DBScripts.executor": "Run",
-    "Python.Main.executor": "Run",
-    "Python.add_author.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "test",
-    "last_opened_file_path": "/home/apelsin/PycharmProjects/BookLib/bot/Main.py",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "database.query.execution",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.DBScripts.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.add_author.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/apelsin/PycharmProjects/BookLib/bot/Main.py&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="BookLib" />
@@ -96,10 +95,32 @@
       <workItem from="1715195086497" duration="2609000" />
       <workItem from="1715248789426" duration="10637000" />
     </task>
+    <task id="LOCAL-00001" summary="fix bugs">
+      <option name="closed" value="true" />
+      <created>1725370252223</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1725370252223</updated>
+    </task>
+    <task id="LOCAL-00002" summary="добавлена возможность добавлять автора">
+      <option name="closed" value="true" />
+      <created>1725370282158</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1725370282158</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix bugs" />
+    <MESSAGE value="добавлена возможность добавлять автора" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавлена возможность добавлять автора" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

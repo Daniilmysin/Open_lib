@@ -66,6 +66,8 @@ async def add_photo(message: Message, state: FSMContext):
             f.write(downloaded_file.read())
     except Exception as error:
         print("нихуя не работает." + str(error))
+        await message.reply('фотография не открывается, возможно файл побит')
+        return
     await AddAuthor().add_data(message.from_user.id, add_data=name_photo, key='photo')
     await message.reply("Фото успешно загружено и сохранено!", reply_markup=get_keyboard_save('author'))
     await state.set_state(AddAuthorState.end)
@@ -76,7 +78,7 @@ async def delete(callback: types.CallbackQuery, state: FSMContext):
     try:
         await RedisManager().del_data(callback.from_user.id)
     except Exception as error:
-        print(f'----ошибка удаления{error}----')
+        print(f'----ошибка удаления {error}----')
         await callback.message.answer('Ошибка удаления данных, возможно вы ничего не ввели')
 
 

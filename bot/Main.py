@@ -12,7 +12,6 @@ load_dotenv()
 Bot_token = str(os.getenv('bot'))
 bot = Bot(token=Bot_token)
 
-
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 
