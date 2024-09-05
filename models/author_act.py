@@ -44,8 +44,6 @@ async def find_author(id_author):
         except Exception as error:
             print(f'поиск автора ошибка:{error},юзер:{id_author}')
             return False
-    if author is None:
-        print('author is not exist')
     return author
 
 

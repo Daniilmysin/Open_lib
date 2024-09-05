@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="update set array">
+    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="update smt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/add_author.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/add_author.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Handlers/debug/info.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/debug/info.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot/Handlers/user/add_book.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/add_book.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/book_act.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/book_act.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/db_act.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/db_act.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725473671343</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update smt">
+      <option name="closed" value="true" />
+      <created>1725559200187</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725559200187</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,7 +145,8 @@
     <MESSAGE value="добавлена возможность добавлять автора" />
     <MESSAGE value="update" />
     <MESSAGE value="update set array" />
-    <option name="LAST_COMMIT_MESSAGE" value="update set array" />
+    <MESSAGE value="update smt" />
+    <option name="LAST_COMMIT_MESSAGE" value="update smt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,6 +1,6 @@
 import json
+from sqlalchemy import select
 
-import orjson
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models.author_act import find_author
@@ -45,3 +45,14 @@ class BookAdd(RedisManager):
                 return False
         await self.del_data(id_user)
         return True
+
+
+async def find_book(id_book):
+    async with AsyncSession(engine) as session:
+        try:
+            result = await session.execute(select(Book).filter_by(id=id_book))
+        except Exception as error:
+            print(f'---ошибка поиска книги:{id_book}, result:{result}, id book: {id_book}, Error: {error}')
+            return False
+        await session.commit()
+    return result.scalar_one_or_none()
