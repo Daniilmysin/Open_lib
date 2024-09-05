@@ -90,6 +90,6 @@ async def end(callback: types.CallbackQuery, state: FSMContext):
         print('всё по пизде пошло')
         await callback.message.answer('Ошибка сохранения, попробуйте снова')
     elif status is True:
-        await callback.message.answer('Книга сохранена!')
+        await callback.message.answer('Автор сохранен!')
         await RedisManager().del_data(callback.from_user.id)
         await state.clear()

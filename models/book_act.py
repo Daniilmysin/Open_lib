@@ -1,3 +1,6 @@
+import json
+
+import orjson
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models.author_act import find_author
@@ -32,7 +35,8 @@ class BookAdd(RedisManager):
                 description=data["description"],
                 author_id=data['author'],
                 creator=id_user,
-                epub=data['epub'],
+                formats=json.dumps(data['formats']),
+                file=data['file']
             ))
             try:
                 await session.commit()

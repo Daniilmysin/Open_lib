@@ -84,40 +84,43 @@ async def ins_book_name(message: Message, state: FSMContext):
 @rt.message(F.document, AddingBook.get_adder_epub)
 async def ins_book_files_epub(message: Message, state: FSMContext):
     """принимает файл с книгой(В РАЗРАБОТКЕ)"""
-    format_book = ('.epub', '.pdf', '.txt', '.fb2') #разрешённые форматы
+    format_book = ('.epub', '.pdf', '.txt', '.fb2')                         # разрешённые форматы
 
     book = await RedisManager().get_data(message.from_user.id)  # получаем книгу
     save_folder = os.path.join(folder, 'books')
     name = str(await transliterate(book['name'])) + '_' + str(secrets.token_hex(16))  # создание имени файла с токеном
 
-    document = message.document                                    # получаем документ
+    document = message.document                                           # получаем документ
+    format = os.path.splitext(document.file_name)[1]
     file_info = await message.bot.get_file(document.file_id)
-    print(str())
-    if os.path.splitext(document.file_name)[1] not in format_book:
+
+    if format not in format_book:
         await message.answer(f'Данный формат не поддерживается, отправьте другой')
         return
-    new_file_name = name + os.path.splitext(document.file_name)[1]
-    downloaded_file = await message.bot.download_file(file_info.file_path)  # скачиваем
-    destination = os.path.join(save_folder, new_file_name)
+    status = await RedisManager().set_array(message.from_user.id, format)
+    if status is True:
+        new_file_name = name + format
+        downloaded_file = await message.bot.download_file(file_info.file_path)  # скачиваем
+        destination = os.path.join(save_folder, new_file_name)
 
-    try:
-        with open(destination, 'wb') as f:                             # сохраняем
-            f.write(downloaded_file.read())
-    except Exception as Error:
-        print(f'Ошибка открытия файла:{Error}')
-        await message.reply("Ошибка открытия и сохранения файла, возможно файл побит")
+        try:
+            with open(destination, 'wb') as f:                             # сохраняем
+                f.write(downloaded_file.read())
+        except Exception as Error:
+            print(f'Ошибка открытия файла:{Error}')
+            await message.reply("Ошибка открытия и сохранения файла, возможно файл побит")
 
-    await BookAdd().add_data(message.from_user.id, str(name), 'epub')
-    await message.reply("Файл сохранен")
-    await message.answer('Книга будет выглядеть так: \n' + book['name'] + '\nОписание: \n' + book['description'],
-                         reply_markup=get_keyboard_save('book'))
-    await state.set_state(AddingBook.end)
+        await BookAdd().add_data(message.from_user.id, str(name), 'file')
+        await message.reply('Можете отправить ещё форматы или нажать на нужную кнопку:',
+                            reply_markup=get_keyboard_save('book'))
+    elif status is False:
+        await message.answer('Этот формат уже есть, повторите с другим')
 
 
-@rt.callback_query(F.data == 'save_book', AddingBook.end)
+@rt.callback_query(F.data == 'save_book')
 async def end(callback: types.CallbackQuery, state: FSMContext):
     """Запускает скрипт с загрузкой книги в базу данных"""
-    status = await BookAdd().end(callback.message.from_user.id)
+    status = await BookAdd().end(callback.from_user.id)
     if status is True:
         await callback.message.answer("Книга сохранена")
         await state.clear()
