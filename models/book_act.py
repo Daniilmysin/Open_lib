@@ -1,6 +1,5 @@
 import json
 from sqlalchemy import select
-
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models.author_act import find_author
@@ -28,16 +27,20 @@ class BookAdd(RedisManager):
 
     async def end(self, id_user) -> bool or None:
         data = await self.get_data(id_user)
+        if data is None or False:
+            return data
+
         print(data)
-        async with (AsyncSession(engine) as session):
-            session.add(Book(
+        new_book = Book(
                 name=data["name"],
                 description=data["description"],
                 author_id=data['author'],
                 creator=id_user,
                 formats=json.dumps(data['formats']),
                 file=data['file']
-            ))
+            )
+        async with (AsyncSession(engine) as session):
+            session.add(new_book)
             try:
                 await session.commit()
             except Exception as Error:

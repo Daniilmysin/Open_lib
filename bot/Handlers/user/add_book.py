@@ -120,12 +120,7 @@ async def ins_book_files_epub(message: Message, state: FSMContext):
 @rt.callback_query(F.data == 'save_book')
 async def end(callback: types.CallbackQuery, state: FSMContext):
     """Запускает скрипт с загрузкой книги в базу данных"""
-    message = (
-        f"<b>Название:</b> {book_title}\n"
-        f"<b>Автор:</b> {book_author}\n"
-        f"<b>Описание:</b> {book_description}\n\n"
-        f"<i>Загружено пользователем:</i> {uploaded_by}"
-    )
+
     status = await BookAdd().end(callback.from_user.id)
     if status is True:
         await callback.message.answer("Книга сохранена")
