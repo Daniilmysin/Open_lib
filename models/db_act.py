@@ -118,6 +118,20 @@ class RedisManager:
                 return False
 
 
+async def search(text, page: int, page_size=5):
+    offset = (page - 1) * page_size
+    async with AsyncSession(engine) as session:
+        stmt = select(Author).offset(offset).limit(page_size).filter_by(name=text)
+        result_author = await session.execute(stmt)
+        if result_author is not None:
+            await session.commit()
+            return result_author.scalars().all()
+        stmt = select(Book).offset(offset).limit(page_size).filter_by(name=text)
+        result_book = await session.execute(stmt)
+        await session.commit()
+        return result_book.scalars().all()
+
+
 async def del_db():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
