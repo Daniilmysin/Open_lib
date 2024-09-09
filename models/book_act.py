@@ -50,7 +50,7 @@ class BookAdd(RedisManager):
         return True
 
 
-async def find_book(id_book):
+async def find_book_id(id_book):
     async with AsyncSession(engine) as session:
         try:
             result = await session.execute(select(Book).filter_by(id=id_book))
@@ -59,3 +59,15 @@ async def find_book(id_book):
             return False
         await session.commit()
     return result.scalar_one_or_none()
+
+
+async def find_book(text, page: int, page_size=5):
+    async with AsyncSession(engine) as session:
+        offset = (page - 1) * page_size
+        try:
+            result = await session.execute(select(Book).offset(offset).limit(page_size).filter_by(name=text))
+        except Exception as error:
+            print(f'---ошибка поиска книги:{text}, result:{result}, Error: {error}---')
+            return False
+        await session.commit()
+    return result.scalars().all()
