@@ -47,5 +47,17 @@ async def find_author(id_author):
     return author
 
 
+async def find_author_all(text, page: int, page_size=5):
+    async with AsyncSession(engine) as session:
+        offset = (page - 1) * page_size
+        try:
+            result = await session.execute(select(Author).offset(offset).limit(page_size).filter_by(name=text))
+        except Exception as error:
+            print(f'---ошибка поиска aвтора:{text}, result:{result}, Error: {error}---')
+            return False
+        await session.commit()
+    return result.scalars().all()
+
+
 async def delete(id_book, id_user) -> bool:
     pass
