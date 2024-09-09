@@ -32,13 +32,13 @@ class BookAdd(RedisManager):
 
         print(data)
         new_book = Book(
-                name=data["name"],
-                description=data["description"],
-                author_id=data['author'],
-                creator=id_user,
-                formats=json.dumps(data['formats']),
-                file=data['file']
-            )
+            name=data["name"],
+            description=data["description"],
+            author_id=data['author'],
+            creator=id_user,
+            formats=json.dumps(data['formats']),
+            file=data['file']
+        )
         async with (AsyncSession(engine) as session):
             session.add(new_book)
             try:
