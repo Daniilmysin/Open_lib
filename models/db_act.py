@@ -95,6 +95,17 @@ class RedisManager:
                 return e
             return True
 
+    async def set_int(self, key, data):
+        async with self.redis as r:
+            await self.del_data(key)
+            try:
+                await r.set(key, data)
+                await r.aclose()
+            except Exception as error:
+                print(error)
+                return False
+            return True
+
     async def get_data(self, key):
         async with self.redis as r:
             try:
@@ -103,19 +114,23 @@ class RedisManager:
                 # Обработка ошибки
                 print(f"Error getting data: {e}")
                 return None
-            if data:
+            if data is int:
+                return data
+            elif data is orjson:
                 return orjson.loads(data)
-            return False
+            else:
+                return False
 
-    async def del_data(self, key):
+    async def del_data(self, key) -> bool:
         async with self.redis as r:
             try:
-                data = await r.delete(key)
+                await r.delete(key)
                 await r.aclose()
             except Exception as e:
                 # Обработка ошибки
                 print(f"Error deleting: {e}")
                 return False
+            return True
 
 
 async def search(text, page: int, page_size=5):
