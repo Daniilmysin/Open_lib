@@ -37,7 +37,11 @@ async def ins_book(callback: types.CallbackQuery, state: FSMContext):
 @rt.message(F.text, StateFilter(AddingBook.get_adder_author))
 async def ins_book_author(message: Message, state: FSMContext):
     """Принимает айди автора"""
-    mes = int(message.text)
+    try:
+        mes = int(message.text)
+    except Exception:
+        await message.answer("Это не айди, попробуйте ещё раз")
+        return
     print(mes)
     status = await BookAdd().author_id(mes, message.from_user.id)
     if status is True:

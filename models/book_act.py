@@ -20,7 +20,7 @@ class BookAdd(RedisManager):
 
     async def add_data(self, id_user, add_data, key: str) -> bool or None:
         data = await self.get_data(id_user)
-        if data is bool:
+        if data is False:
             return data
         data[key] = add_data
         return await self.set_data(id_user, data)

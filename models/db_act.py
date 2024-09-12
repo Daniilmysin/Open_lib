@@ -1,5 +1,6 @@
 import json
 
+from models import find_author, find_user
 import orjson
 import os
 import redis.asyncio as aioredis
@@ -21,22 +22,27 @@ class Base(AsyncAttrs, DeclarativeBase):
 
 
 class Book(Base):
-    __tablename__ = 'book'
+    __tablename__ = 'Book'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(150))
-    author_id = Column(Integer, ForeignKey('author.id'))  # ссылка на автора
+    author_id = Column(Integer, ForeignKey('Author.id'))  # ссылка на автора
     description = Column(Text)
-    creator = Column(Integer, ForeignKey('user.id'))  # ссылка на того что добавил книгу
+    creator = Column(Integer, ForeignKey('User.id'))  # ссылка на того что добавил книгу
     check = Column(Boolean, default=False)
     file = Column(String(150))
     formats = Column(JSON)
 
+    def __repr__(self):
+        user_creator = find_user(self.creator)
+        author = find_author(self.author_id)
+        return f"Book(id={self.id}, author='{author.name}', title='{self.description}', creator='{user_creator}')"
+
 
 class Author(Base):
-    __tablename__ = 'author'
+    __tablename__ = 'Author'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100))
-    creator = Column(Integer, ForeignKey("user.id"))
+    creator = Column(Integer, ForeignKey("User.id"))
     description = Column(Text)
     photo = Column(String(100))
     check = Column(Boolean, default=False)
@@ -44,7 +50,7 @@ class Author(Base):
 
 
 class User(Base):
-    __tablename__ = 'user'
+    __tablename__ = 'User'
     id = Column(Integer, primary_key=True)
     name = Column(String(100))
     books = relationship("Book")
@@ -116,7 +122,7 @@ class RedisManager:
                 return None
             if data is int:
                 return data
-            elif data is orjson:
+            elif data:
                 return orjson.loads(data)
             else:
                 return False
