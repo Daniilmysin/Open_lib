@@ -4,14 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="update smth">
+    <list default="true" id="65e40264-6cf3-41db-87ee-749694eaba73" name="Changes" comment="update redis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/add_book.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/add_book.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bot/Handlers/user/find_book.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot/Handlers/user/find_book.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/book_act.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/book_act.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/db_act.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/db_act.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -28,7 +39,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.DBScripts.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.Main.executor&quot;: &quot;Run&quot;,
     &quot;Python.add_author.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -164,7 +175,31 @@
       <option name="project" value="LOCAL" />
       <updated>1725905825146</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update smth">
+      <option name="closed" value="true" />
+      <created>1725906420703</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1725906420703</updated>
+    </task>
+    <task id="LOCAL-00011" summary="update smth">
+      <option name="closed" value="true" />
+      <created>1725906508336</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1725906508336</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update redis">
+      <option name="closed" value="true" />
+      <created>1725975494635</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1725975494635</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,7 +213,8 @@
     <MESSAGE value="update smt" />
     <MESSAGE value="add search for all" />
     <MESSAGE value="update smth" />
-    <option name="LAST_COMMIT_MESSAGE" value="update smth" />
+    <MESSAGE value="update redis" />
+    <option name="LAST_COMMIT_MESSAGE" value="update redis" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
